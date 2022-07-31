@@ -6,11 +6,8 @@ namespace CraftParty.Infrastructure.Data.Repositories;
 
 public class RefreshTokensRepository : Repository<RefreshToken>, IRefreshTokenRepository
 {
-    private readonly DbSet<RefreshToken> _dbSet;
-
     public RefreshTokensRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        _dbSet = dbContext.RefreshTokens;
     }
 
     public Task<RefreshToken> GetByRefreshTokenAsync(string refreshToken)

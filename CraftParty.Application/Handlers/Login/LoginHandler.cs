@@ -7,7 +7,7 @@ using MediatR;
 
 namespace CraftParty.Application.Handlers.Login;
 
-public class LoginHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
+public class LoginHandler : IRequestHandler<LoginCommand, ErrorOr<AuthenticationResult>>
 {
     private readonly IAuthenticationService _authenticationService;
     private readonly IMapper _mapper;
@@ -24,10 +24,10 @@ public class LoginHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationRe
     }
 
     public async Task<ErrorOr<AuthenticationResult>> Handle(
-        LoginQuery query,
+        LoginCommand command,
         CancellationToken cancellationToken)
     {
-        var loginResult = await _authenticationService.Login(_mapper.Map<LoginModel>(query.RequestModel));
+        var loginResult = await _authenticationService.Login(_mapper.Map<LoginModel>(command.RequestModel));
 
         if (!loginResult.IsError)
         {

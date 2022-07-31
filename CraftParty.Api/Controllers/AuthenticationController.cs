@@ -17,10 +17,10 @@ public class WeatherForecastController : ApiController
         _mediator = mediator;
     }
 
-    [HttpGet(Routes.Authentication.Login)]
+    [HttpPost(Routes.Authentication.Login)]
     public async Task<IActionResult> Login(LoginRequestModel requestModel)
     {
-        var loginResult = await _mediator.Send(new LoginQuery(requestModel));
+        var loginResult = await _mediator.Send(new LoginCommand(requestModel));
 
         return loginResult.Match(
             result => Ok(result),

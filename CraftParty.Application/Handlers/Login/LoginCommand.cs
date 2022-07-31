@@ -5,4 +5,4 @@ using MediatR;
 
 namespace CraftParty.Application.Handlers.Login;
 
-public record LoginQuery(LoginRequestModel RequestModel) : IRequest<ErrorOr<AuthenticationResult>>;
+public record LoginCommand(LoginRequestModel RequestModel) : IRequest<ErrorOr<AuthenticationResult>>;

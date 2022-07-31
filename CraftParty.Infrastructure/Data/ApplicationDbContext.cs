@@ -12,12 +12,13 @@ public class ApplicationDbContext : IdentityDbContext
     public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    { }
+    {
+        Database.EnsureCreated();
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-        builder.ApplyConfigurationsFromAssembly(typeof(RefreshTokenConfiguration).Assembly);
+        builder.ApplyConfigurations();
         base.OnModelCreating(builder);
     }
 }

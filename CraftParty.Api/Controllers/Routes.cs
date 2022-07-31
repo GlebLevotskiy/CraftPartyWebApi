@@ -2,10 +2,6 @@ namespace CraftParty.Api.Controllers;
 
 public static class Routes
 {
-    public static class Error
-    {
-        public const string Root = "/error";
-    }
     public static class Authentication
     {
         public const string Login = "login";
